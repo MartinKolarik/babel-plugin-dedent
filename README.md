@@ -1,6 +1,6 @@
 # babel-dedent
 
-Removes indentation from multiline template strings. Works wit both tabs and spaces.
+Removes indentation from multiline template strings. Works with both tabs and spaces.
 
 ## Installation
 
