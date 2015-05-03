@@ -1,3 +1,5 @@
-.idea/
-src/
+bin/
 node_modules/
+src/
+test/
+.*
