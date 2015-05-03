@@ -1,12 +1,12 @@
-# babel-dedent
+# babel-plugin-dedent
 
 Removes indentation from multiline template strings. Works with both tabs and spaces.
 
 ## Installation
 
 ```
-$ npm install babel babel-dedent
-$ babel --plugins babel-dedent script.js
+$ npm install babel babel-plugin-dedent
+$ babel --plugins dedent script.js
 ```
 
 ## Usage

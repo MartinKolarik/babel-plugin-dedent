@@ -1,7 +1,7 @@
 export default function babelDedent (babel) {
 	let t = babel.types;
 
-	return new babel.Transformer('babel-dedent', {
+	return new babel.Transformer('plugin-dedent', {
 		CallExpression (node) {
 			if (t.isIdentifier(node.callee, { name: 'dedent' })) {
 				if (t.isTemplateLiteral(node.arguments[0])) {
