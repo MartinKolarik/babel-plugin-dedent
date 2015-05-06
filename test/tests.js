@@ -124,6 +124,38 @@ describe('dedent tag', () => {
 		).to.equal('1. line #1\n\t2. line #2\n\t\t3. line');
 	});
 
+	it('should ignore the last line if it doesn\'t contain anything else than whitespace', () => {
+		expect(
+			function () {
+				return dedent`
+					Line #1
+					Line #2
+					Line #3
+				`;
+			}()
+		).to.equal('Line #1\nLine #2\nLine #3');
+
+		expect(
+			function () {
+				return dedent`
+					Line #${1}
+					Line #${2}
+					Line #${3}
+				`;
+			}()
+		).to.equal('Line #1\nLine #2\nLine #3');
+
+		expect(
+			function () {
+				return dedent`
+					${1}. line #${1}
+					${2}. line #${2}
+					${3}. line
+				`;
+			}()
+		).to.equal('1. line #1\n2. line #2\n3. line');
+	});
+
 	it('should operate on raw strings', () => {
 		expect(
 			dedent`
@@ -264,6 +296,38 @@ describe('dedent() function', () => {
 		).to.equal('1. line #1\n\t2. line #2\n\t\t3. line');
 	});
 
+	it('should ignore the last line if it doesn\'t contain anything else than whitespace', () => {
+		expect(
+			function () {
+				return dedent(`
+					Line #1
+					Line #2
+					Line #3
+				`);
+			}()
+		).to.equal('Line #1\nLine #2\nLine #3');
+
+		expect(
+			function () {
+				return dedent(`
+					Line #${1}
+					Line #${2}
+					Line #${3}
+				`);
+			}()
+		).to.equal('Line #1\nLine #2\nLine #3');
+
+		expect(
+			function () {
+				return dedent(`
+					${1}. line #${1}
+					${2}. line #${2}
+					${3}. line
+				`);
+			}()
+		).to.equal('1. line #1\n2. line #2\n3. line');
+	});
+
 	it('should operate on raw strings', () => {
 		expect(
 			dedent(`
@@ -402,6 +466,38 @@ describe('dedent() function with custom tag', () => {
 					${3}. line
 			`)
 		).to.equal('2. line #2\n\t4. line #4\n\t\t6. line');
+	});
+
+	it('should ignore the last line if it doesn\'t contain anything else than whitespace', () => {
+		expect(
+			function () {
+				return dedent(tag`
+					Line #1
+					Line #2
+					Line #3
+				`);
+			}()
+		).to.equal('Line #1\nLine #2\nLine #3');
+
+		expect(
+			function () {
+				return dedent(tag`
+					Line #${1}
+					Line #${2}
+					Line #${3}
+				`);
+			}()
+		).to.equal('Line #2\nLine #4\nLine #6');
+
+		expect(
+			function () {
+				return dedent(tag`
+					${1}. line #${1}
+					${2}. line #${2}
+					${3}. line
+				`);
+			}()
+		).to.equal('2. line #2\n4. line #4\n6. line');
 	});
 
 	it('should operate on raw strings', () => {

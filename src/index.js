@@ -25,29 +25,51 @@ export default function babelDedent (babel) {
 function transform (quasis) {
 	let elements = quasis.filter(element => element.type === 'TemplateElement');
 	let matches = [];
-	let pattern;
+
+	rtrim(elements[elements.length - 1]);
 
 	elements.forEach((element) => {
-		let match = element.value.raw.match(/\n[\t ]+/g);
+		let match;
 
-		if (match) {
+		if (match = element.value.raw.match(/\n[\t ]+/g)) {
 			matches.push(...match);
 		}
 	});
 
 	if (matches.length) {
-		let size = Math.min(...matches.map((value) => value.length - 1));
-		pattern = new RegExp(`\n[\t ]{${size}}`, 'g');
-	}
+		let size = Math.min(...matches.map(value => value.length - 1));
+		let pattern = new RegExp(`\n[\t ]{${size}}`, 'g');
 
-	[ 'raw', 'cooked' ].forEach((type) => {
-		if (matches.length) {
+		[ 'raw', 'cooked' ].forEach((type) => {
 			elements.forEach((element) => {
 				element.value[type] = element.value[type].replace(pattern, '\n');
 			});
-		}
+		});
+	}
 
-		elements[0].value[type] = elements[0].value[type].replace(/^\r?\n/, '');
-		elements[elements.length - 1].value[type] = elements[elements.length - 1].value[type].replace(/\r?\n$/, '');
-	});
+	ltrim(elements[0]);
+}
+
+function ltrim (element) {
+	let pattern = /^\r?\n/;
+
+	if (pattern.test(element.value.raw)) {
+		element.value.raw = element.value.raw.replace(pattern, '');
+		element.value.cooked = element.value.cooked.replace(pattern, '');
+	}
+
+	return element;
+}
+
+function rtrim (element) {
+	let match;
+
+	if (match = element.value.raw.match(/\r?\n([\t ]*)$/)) {
+		let pattern = new RegExp(`\r?\n[\t ]{${match[1].length}}$`);
+
+		element.value.raw = element.value.raw.replace(pattern, '');
+		element.value.cooked = element.value.cooked.replace(pattern, '');
+	}
+
+	return element;
 }
