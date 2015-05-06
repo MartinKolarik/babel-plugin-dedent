@@ -47,6 +47,17 @@ expect(
 	`
 ).to.equal('Line #1\n\tLine #2\n\t\tLine #3');
 
+// The last line is ignored if it doesn't contain anything else than whitespace.
+expect(
+	function () {
+		return dedent`
+			Line #1
+			Line #2
+			Line #3
+		`;
+	}()
+).to.equal('Line #1\nLine #2\nLine #3');
+
 // Escaped characters are ignored.
 expect(
 	dedent`

@@ -1,14 +1,13 @@
 {
 	"name": "babel-plugin-dedent",
 	"description": "Remove indentation from multiline template strings",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"homepage": "https://github.com/MartinKolarik/babel-plugin-dedent/",
 	"github": "https://github.com/MartinKolarik/babel-plugin-dedent/",
 	"main": "lib/index.js",
 	"keywords": [
-		"template",
-		"literals",
-		"strings",
+		"template literals",
+		"template strings",
 		"dedent",
 		"deintend",
 		"indentation",
@@ -33,7 +32,7 @@
 	"scripts": {
 		"build": "node bin/build.js",
 		"lint": "jscs src && jshint src",
-		"test": "npm run lint && npm run build && node bin/test.js"
+		"test": "npm run lint && node bin/test.js"
 	},
 	"repository": {
 		"type": "git",
