@@ -19,7 +19,7 @@
 	"disallowSpacesInCallExpression": true,
 	"disallowTrailingWhitespace": true,
 	"disallowYodaConditions": true,
-	"maximumLineLength": 150,
+	"maximumLineLength": 160,
 	"requireBlocksOnNewline": true,
 	"requireCamelCaseOrUpperCaseIdentifiers": true,
 	"requireCapitalizedComments": { "allExcept": [ "global" ] },

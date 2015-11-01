@@ -1,26 +1,32 @@
-export default function babelDedent (babel) {
+module.exports = function babelPluginDedent (babel) {
 	let t = babel.types;
 
-	return new babel.Transformer('plugin-dedent', {
-		CallExpression (node) {
-			if (t.isIdentifier(node.callee, { name: 'dedent' })) {
-				if (t.isTemplateLiteral(node.arguments[0])) {
-					transform(node.arguments[0].quasis);
-					return node.arguments[0];
-				} else if (t.isTaggedTemplateExpression(node.arguments[0])) {
-					transform(node.arguments[0].quasi.quasis);
-					return node.arguments[0];
+	return {
+		visitor: {
+			CallExpression (path) {
+				let node = path.node;
+
+				if (t.isIdentifier(node.callee, { name: 'dedent' })) {
+					if (t.isTemplateLiteral(node.arguments[0])) {
+						transform(node.arguments[0].quasis);
+						return path.replaceWith(node.arguments[0]);
+					} else if (t.isTaggedTemplateExpression(node.arguments[0])) {
+						transform(node.arguments[0].quasi.quasis);
+						return path.replaceWith(node.arguments[0]);
+					}
 				}
-			}
+			},
+			TaggedTemplateExpression (path) {
+				let node = path.node;
+
+				if (t.isIdentifier(node.tag, { name: 'dedent' })) {
+					transform(node.quasi.quasis);
+					return path.replaceWith(node.quasi);
+				}
+			},
 		},
-		TaggedTemplateExpression (node) {
-			if (t.isIdentifier(node.tag, { name: 'dedent' })) {
-				transform(node.quasi.quasis);
-				return node.quasi;
-			}
-		},
-	});
-}
+	};
+};
 
 function transform (quasis) {
 	let elements = quasis.filter(element => element.type === 'TemplateElement');
