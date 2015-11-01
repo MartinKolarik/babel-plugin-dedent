@@ -9,6 +9,11 @@ $ npm install babel babel-plugin-dedent
 $ babel --plugins dedent script.js
 ```
 
+### Babel v6
+
+v2.x.x of this plugin is required. Older versions are not compatible with Babel v6. Note that this plugin needs to be run before `transform-es2015-template-literals`,
+which is part of the `es2015` preset. Currently, there's no way to do that when using presets, so you need to manually specify all transforms you want to use.
+
 ## Usage
 
 Indentation will be removed from all strings tagged with `dedent` tag (you can also use `dedent` as a function, if you need to use your own tag).
