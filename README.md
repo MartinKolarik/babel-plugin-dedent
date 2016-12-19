@@ -2,6 +2,8 @@
 
 Removes indentation from multiline template strings. Works with both tabs and spaces.
 
+Not using Babel? [Here's a runtime version of this plugin.](https://github.com/MartinKolarik/dedent-js)
+
 ## Installation
 
 ```
@@ -73,4 +75,4 @@ expect(
 ```
 
 ## License
-Copyright (c) 2015 Martin Kolárik. Released under the MIT license.
+Copyright (c) 2015 - 2016 Martin Kolárik. Released under the MIT license.
