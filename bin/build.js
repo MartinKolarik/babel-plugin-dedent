@@ -7,6 +7,6 @@ console.log('\nCleaning...');
 shell.rm('-rf', 'lib/');
 
 console.log('\nTransforming to ES5...');
-shell.exec(path.normalize('node_modules/.bin/babel') + ' --presets es2015 --out-dir lib src');
+shell.exec(path.normalize('node_modules/.bin/babel') + ' --presets @babel/env --out-dir lib src');
 
 console.log('\nDone.');

@@ -9,10 +9,10 @@ module.exports = function babelPluginDedent (babel) {
 				if (t.isIdentifier(node.callee, { name: 'dedent' })) {
 					if (t.isTemplateLiteral(node.arguments[0])) {
 						transform(node.arguments[0].quasis);
-						return path.replaceWith(node.arguments[0]);
+						path.replaceWith(node.arguments[0]);
 					} else if (t.isTaggedTemplateExpression(node.arguments[0])) {
 						transform(node.arguments[0].quasi.quasis);
-						return path.replaceWith(node.arguments[0]);
+						path.replaceWith(node.arguments[0]);
 					}
 				}
 			},
@@ -21,7 +21,7 @@ module.exports = function babelPluginDedent (babel) {
 
 				if (t.isIdentifier(node.tag, { name: 'dedent' })) {
 					transform(node.quasi.quasis);
-					return path.replaceWith(node.quasi);
+					path.replaceWith(node.quasi);
 				}
 			},
 		},
