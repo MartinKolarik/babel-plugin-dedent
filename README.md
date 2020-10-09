@@ -11,9 +11,9 @@ $ npm install babel babel-plugin-dedent
 $ babel --plugins dedent script.js
 ```
 
-### Babel v6
+### Babel v6+
 
-v2.x.x of this plugin is required. Older versions are not compatible with Babel v6.
+v2.x.x of this plugin is required. Older versions are not compatible with Babel v6+.
 
 ## Usage
 
@@ -75,4 +75,4 @@ expect(
 ```
 
 ## License
-Copyright (c) 2015 - 2017 Martin Kolárik. Released under the MIT license.
+Copyright (c) 2015 - 2020 Martin Kolárik. Released under the MIT license.
