@@ -32,8 +32,8 @@ shell.rm('-rf', 'node_modules/babel-plugin-dedent/');
 
 console.log('\nTransforming to ES5...');
 shell.mkdir('-p', 'node_modules/babel-plugin-dedent/test');
-shell.exec(path.normalize('node_modules/@babel/cli/bin/babel.js') + ' --presets @babel/env --out-dir node_modules/babel-plugin-dedent src');
-shell.exec(path.normalize('node_modules/@babel/cli/bin/babel.js') + ' --plugins dedent,' + es2015.join(',') + ' --out-dir node_modules/babel-plugin-dedent/test test');
+shell.exec('node ' + path.normalize('node_modules/@babel/cli/bin/babel.js') + ' --presets @babel/env --out-dir node_modules/babel-plugin-dedent src');
+shell.exec('node ' + path.normalize('node_modules/@babel/cli/bin/babel.js') + ' --plugins dedent,' + es2015.join(',') + ' --out-dir node_modules/babel-plugin-dedent/test test');
 
 console.log('\nTesting...');
 shell.exec(path.normalize('node_modules/.bin/mocha') + ' node_modules/babel-plugin-dedent/test');
